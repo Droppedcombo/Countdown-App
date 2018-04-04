@@ -1,10 +1,25 @@
 import React, { Component } from "react";
-import DaterPicker from "react-datepicker";
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 class Countdown extends Component {
 
+ 
     constructor(props) {
         super(props);
+
+        this.handleChange = this.handleChange.bind(this);
+
+        this.state = {
+            startDate: moment()
+            
+        }
+    }
+
+    handleChange(date){
+        this.setState({
+            startDate: date
+        })
         
     }
 
@@ -12,7 +27,11 @@ class Countdown extends Component {
         return (
             <div>
                 <h1> Y2k 2 CountDown</h1>
-                <DaterPicker />
+                <DatePicker 
+                  selected={this.state.startDate}
+                  onChange={this.handleChange}
+
+                />
             </div>
         )
     };
