@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { clearInterval } from 'timers';
 
     class Clock extends Component {
 
@@ -14,9 +15,40 @@ import React, { Component } from 'react';
             }
         }
 
-       getTimeRemaining(countdown) {
+        componentWillReceiveProps(nextPreops) {
+            console.log(`next props: ${JSON.stringify(nextProps)}`)
+        }
+
+        getTimeRemaining(countdown) {
             var cdown = new Date(countdown);
             let today = new Date();
+
+            const currentMonth = today.getMonth();
+            const downMonth = cdown.getMonth();
+
+            if(downMonth > currentMonth) {
+                
+                cdown.setFullYear(today.getFullYear());
+            } 
+            else if (downMonth < currentMonth) { 
+
+                cdown.setFullYear(today.getFullYear() + 1);
+            }
+            else if(downMonth == currentMonth) {
+                const downDay = cdown.getDate();
+                const currentDay = today.getDate();
+                if(downDay > currentDay) {
+                    cdown.setFullYear(today.getFullYear());
+                }
+                else if (downDay < currentDay) {
+
+                    cdown.setFullYear(today.getFullYear() + 1);
+                }
+            }
+             cdown.setFullYear(today.getFullYear());
+
+
+
 
             var distance = cdown.getTime() - today.getTime();
 
@@ -34,6 +66,17 @@ import React, { Component } from 'react';
             }
        }
 
+       getAge = function() {
+            var cdown = new Date(this.countdown);
+            let today = new Date();
+
+
+            var distance =  today.getTime() - cdown.getTime();
+            var daysOld = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var yearsOld = Number((daysOld/365).toFixed(0)); 
+            return yearsOld
+       }.bind(this)
+
        componentDidMount () {
                  this.timer = setInterval(() => {
                      const timeRemaining = this.getTimeRemaining(this.countdown)
@@ -41,14 +84,23 @@ import React, { Component } from 'react';
                  }, 1000);
              }
 
+            componentWillUnmount() {
+                clearInterval(this.timer);
+            } 
+
         render() {
             const data = this.state.timeRemaining
             return (
                 <div>
-                    <div>Days {data.days} </div>
-                    <div>HRS {data.hours} </div>
-                    <div>MINS {data.minutes} </div>
-                    <div>SECS {data.seconds} </div>
+                    <div>
+                        <div>Days {data.days} </div>
+                        <div>HRS {data.hours} </div>
+                        <div>MINS {data.minutes} </div>
+                        <div>SECS {data.seconds} </div>
+                    </div>
+                    <div>
+                        {<h4>Remaining until you are {this.getAge()} </h4> }
+                    </div>
                 </div>
             )
         }
