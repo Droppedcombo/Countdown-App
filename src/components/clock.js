@@ -9,6 +9,7 @@ import { clearInterval } from 'timers';
             this.timer = 0;
             this.countdown = props.countdownFormState.startDate.toString();
             this.getTimeRemaining = this.getTimeRemaining.bind(this);
+            this.noYear = new Date(this.countdown).getFullYear() == new Date().getFullYear()
 
             this.state = {
                 timeRemaining: this.getTimeRemaining(props.countdownFormState.startDate.toString())
@@ -93,6 +94,17 @@ import { clearInterval } from 'timers';
                 clearInterval(this.timer);
         } 
 
+        renderMessage = function() {
+            if(this.noYear) {
+                return(
+                    <h4>until your birthday!</h4> 
+                )
+            }
+            return(
+                <h4>remaining until you are {this.get()}</h4>
+        )
+        }.bind(this)
+
         render() {
             const data = this.state.timeRemaining
             return (
@@ -109,7 +121,7 @@ import { clearInterval } from 'timers';
                              <div>SECS {data.seconds} </div>
                           </div> 
                        <div>
-                        {<h4>Remaining until you are {this.getDate()} </h4> }
+                       {this.renderMessage()}
                     </div>
                 </div>
                 
