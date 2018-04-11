@@ -43,8 +43,13 @@ import { clearInterval } from 'timers';
                 else if (downDay < currentDay) {
 
                     cdown.setFullYear(today.getFullYear() + 1);
+                } else { if (downDay == currentDay)  {
+                    return 0
                 }
             }
+            }
+
+
              cdown.setFullYear(today.getFullYear());
 
 
@@ -66,7 +71,7 @@ import { clearInterval } from 'timers';
             }
        }
 
-       getAge = function() {
+       getDate = function() {
             var cdown = new Date(this.countdown);
             let today = new Date();
 
@@ -76,31 +81,40 @@ import { clearInterval } from 'timers';
             var yearsOld = Number((daysOld/365).toFixed(0)); 
             return yearsOld
        }.bind(this)
-
+    
        componentDidMount () {
                  this.timer = setInterval(() => {
                      const timeRemaining = this.getTimeRemaining(this.countdown)
                      this.setState({ timeRemaining: timeRemaining })
                  }, 1000);
-             }
+        }
 
-            componentWillUnmount() {
+        componentWillUnmount() {
                 clearInterval(this.timer);
-            } 
+        } 
 
         render() {
             const data = this.state.timeRemaining
             return (
                 <div>
-                    <div>
-                        <div>Days {data.days} </div>
-                        <div>HRS {data.hours} </div>
-                        <div>MINS {data.minutes} </div>
-                        <div>SECS {data.seconds} </div>
+                {
+                    this.state.timeRemaining == 0 ?
+                        <h1> Happy Birthday! </h1>
+                        :   
+                        <div>
+                          <div>
+                             <div>Days {data.days} </div>
+                             <div>HRS {data.hours} </div>
+                             <div>MINS {data.minutes} </div>
+                             <div>SECS {data.seconds} </div>
+                          </div> 
+                       <div>
+                        {<h4>Remaining until you are {this.getDate()} </h4> }
                     </div>
-                    <div>
-                        {<h4>Remaining until you are {this.getAge()} </h4> }
-                    </div>
+                </div>
+                
+
+                }
                 </div>
             )
         }

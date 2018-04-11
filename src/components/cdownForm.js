@@ -31,7 +31,9 @@ class CdownForm extends Component {
     }
 
     handleChangeDate() {
-        this.setState
+        this.setState({
+            formCompleted: false
+        })
     }
 
     
