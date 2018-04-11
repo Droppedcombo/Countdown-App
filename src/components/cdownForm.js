@@ -45,7 +45,7 @@ class CdownForm extends Component {
                     this.state.formCompleted ? 
                     <div>
                         <Clock countdownFormState={this.state}/>
-                        <a onClick={this.handleChangeDate}>Change Date</a>
+                        <a className="change-date" onClick={this.handleChangeDate}>Change Date</a>
                     </div>
                 :
                     <div> 
