@@ -114,7 +114,6 @@ import { clearInterval } from 'timers';
                       <div className="message-container">
                           <p className="message-container__title">Countdown Complete</p>
                           <p className="message-container__message">Happy Birthday</p>
-
                        </div>
         
                         :   
