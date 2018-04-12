@@ -1,3 +1,4 @@
+
 .countdown {
     @include center-item;
     width: 100vw;
@@ -5,62 +6,60 @@
     background-color: var(--grey-primary);
     color: white;
     clip-path: polygon(14.4% 50%, 92% 50%, 85.6% 70%, 8% 70%);
-} 
- .countdown__clock {
+}
+
+.countdown__clock {
     @include clock-dimensions;
     position: absolute;
-    top: 52%;
+    top: 50%;
     left: 50%;
-    padding: 0%;
+    padding: 0;
     transform: translateX(-50%);
 
     display: flex;
     justify-content: space-around;
-    align-items: center;
-
+    align-content: center;
 }
+
 .change-date {
     color: white!important;
     position: absolute;
     left: 21.5%;
     top: 45%;
-    font-size: 18px;
-    font-weight: 100;
+    font-weight: 18px;
+    font-size: 100;
 }
-
 
 
 .message-container {
-    @include clock-dimensions;
-    @include center-item($pull-y: 0%);
-    margin-top: 20px; 
-
+   @include clock-dimensions;
+   @include center-item($pull-y: 0%);
+    margin-top: 20px;
 }
 
 .message-container__title {
-    @include center-item($pull-x: 0%, $pull-y: 0, $top: 5%, $left: 10%);
+    @include center-item($pull-x: 0, $pull-y: 0, $top: 0, $left: 10%);
     font-family: var(--roboto-condensed);
     color: var(--minor-primary);
     font-size: 22px;
+   
 }
 
-
 .message-container__message {
-    @include center-item($pull-x: 0%, $pull-y: 0, $top: 15%, $left: 10%);
+    @include center-item($pull-x: 0, $pull-y: 0, $top: 5%, $left: 10%);
     font-family: var(--roboto-condensed);
     font-size: 90px;
     font-weight: bold;
     width: 100%;
-    
 }
+
 
 
 ul li {
     list-style: none;
-    color: (--minor-primary);
+    color: var(--minor-primary);
     font-size: 22px;
-    font-family:  var(--roboto-condensed);
-        
+    font-family: var(--roboto-condesned);
 }
 
 ul p {
@@ -73,3 +72,6 @@ ul p {
 .until-container {
     @include center-item($top: 85%, $left: 50%);
 }
+
+
+
