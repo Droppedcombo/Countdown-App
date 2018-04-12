@@ -127,8 +127,7 @@ import { clearInterval } from 'timers';
                               <li>MINS<p> {data.minutes}</p></li>
                               <li>SECS<p>{data.seconds}</p></li>
                           </ul>
-  
-                          </div>
+                        </div>
                           <div className="until-container">
                               {this.renderMessage()}
                           </div>
