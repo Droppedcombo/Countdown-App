@@ -23,5 +23,5 @@ h1 {
 
 .header__subskew {
     @include header-background(var(--main-secondary));
-    clip-path: polygon(0 100%, 0 0, 0 40%, 16% 100%)
+    
 } 
