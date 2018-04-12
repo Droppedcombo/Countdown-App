@@ -8,11 +8,11 @@
 } 
  .countdown__clock {
     @include clock-dimensions;
-     position: absolute;
-     top: 52%;
-     left: 50%;
-     padding: 0%;
-     transform: translateX(-50%);
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    padding: 0%;
+    transform: translateX(-50%);
 
     display: flex;
     justify-content: space-around;
@@ -73,3 +73,6 @@ ul p {
 
 }
 
+.until-container {
+    @include center-item($top: 85%, $left: 50%);
+}
